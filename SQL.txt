@@ -1,0 +1,78 @@
+show DATABASES;
+
+create DATABASE test1;
+
+SHOW DATABASES;
+
+use test1;
+
+create table if not exists employee
+(
+    id int,
+    name VARCHAR(50),
+    DOB DATE    
+);
+
+insert into employee(id,DOB,name) values(1,'2021-01-01','sid');
+insert into employee(id,DOB,name) values(2,'2021-01-01','fid'),(3,'2020-01-01','tid'),(4,'2022-01-01','kid');
+
+SELECT * from employee ;
+
+use test1;
+
+create table if not exists employee_with_constraints
+(
+    id int NOT NULL,
+    name VARCHAR(50),
+    DOB DATE,
+    UNIQUE (id),
+    CHECK (id <10)   
+);
+
+insert into employee_with_constraints(id,DOB,name) values(1,'2021-01-01','mid');
+insert into employee_with_constraints(id,DOB,name) values(2,'2021-01-01','mid');
+insert into employee_with_constraints(id,DOB,name) values(3,'2021-01-01','');
+
+SELECT * from employee_with_constraints;
+
+create table if not exists employee_with_constraints1
+(
+    id int NOT NULL,
+    name VARCHAR(50),
+    DOB DATE DEFAULT '2021-01-23',
+    UNIQUE (id),
+    CHECK (id <10)   
+);
+
+insert into employee_with_constraints1(id,DOB,name) values(3,'2021-01-01','kid');
+insert into employee_with_constraints1(id,name) values(-50,'miren');
+
+Select * from employee_with_constraints1;
+
+create table if not exists employee_with_constraints2
+(
+    id int NOT NULL,
+    name VARCHAR(50),
+    DOB DATE DEFAULT '2021-01-23',
+    UNIQUE (id),
+    CHECK (id <10)   
+);
+
+insert into employee_with_constraints2(id,DOB,name) values(1,'2021-11-01','Sid');
+insert into employee_with_constraints2(id,name) values(4,'firen');
+
+Select * from employee_with_constraints2;
+
+alter table emp1 add slary int;
+
+alter table emp1 modify name varchar(10);
+
+alter table emp1 DROP DOB;
+
+alter table emp1 RENAME column name to fullname;
+
+alter table emp1 add constraint id_constraint UNIQUE(id);
+
+alter table emp1 drop constraint id_constraint;
+
+
