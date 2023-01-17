@@ -1,0 +1,44 @@
+show databases;
+Create database emp; 
+
+use emp;
+create table if not exists info1
+(
+	id int not null,
+    name Varchar(30),
+    salary int,
+    dob Date,
+    Constraint unique_id unique(id),
+    Constraint idcheck Check(id<20)
+);
+
+Show tables;
+
+insert into info1 values(1,'srimanta',4000,'2020-10-2'),(2,'mrityunjay',4000,'2020-1-20');
+insert into info1 values(3,'ritabrata',7000,'2020-10-2');
+insert into info1 values(7,'Arun',6000,'2020-10-2');
+select * from info1 order by dob, name desc;
+
+insert into info1(id, name,salary) values(10,'tom',4000);
+set sql_safe_updates=0;
+update info1 set salary=6000 where name ='tom';
+commit;
+
+update info1 set salary=6000 where name='mrityunjay';
+use emp;
+# write aq uery whos is getting highest salary
+select * from info1 order by salary asc limit 1; 
+
+#logical operations using where clause 
+select * from info1 where salary> 4000 and id<7;
+
+#like operation in where clause
+select * from info1 where name like "r%a";
+
+select * from info1;
+
+select salary, count(name) from info1 group by(salary);
+
+select name as emp_name,salary as min_salary from info1 order by(salary) asc ;
+
+show tables;
